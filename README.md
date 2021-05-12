@@ -25,14 +25,16 @@ Things you may want to cover:
 
 ## users
 
-| Column             | Type                | Options                 |
-|--------------------|---------------------|-------------------------|
-| email              | string              | null: false             |
-| password           | string              | null: false             |
-| nickname           | string              | null: false             |
-| name               | string              | null: false             |
-| name_kana          | string              | null: false             |
-| profile            | text                | null: false             |
+| Column                 | Type                | Options                 |
+|----------------------- |---------------------|-------------------------|
+| email                  | string              |null: false、unique: true|
+| encrypted_password     | string              | null: false             |
+| nickname               | string              | null: false             |
+| first_name             | string              | null: false             |
+| last_name              | string              | null: false             |
+| first_name_kana        | string              | null: false             |
+| last_name_kana         | string              | null: false             |
+| birthday               | date                | null: false             |
 
 ### Association
 
@@ -45,11 +47,10 @@ Things you may want to cover:
 
 | Column             | Type                | Options                 |
 |--------------------|---------------------|-------------------------|
-| user_id            | references          | foreign_key: true       |
+| user               | references          | foreign_key: true       |
 | title              | string              | null: false             |
 | prose              | string              | null: false             |
 | description        | text                | null: false             |
-| image              | string              | null: false             |
 
 ### Association
 
@@ -62,9 +63,8 @@ Things you may want to cover:
 
 | Column             | Type                | Options                 |
 |--------------------|---------------------|-------------------------|
-| user_id            | references          | foreign_key: true       |
-| item_id            | references          | foreign_key: true       |
-| day                | date                | null: false             |
+| user               | references          | foreign_key: true       |
+| item               | references          | foreign_key: true       |
 
 ### Association
 
@@ -76,14 +76,14 @@ Things you may want to cover:
 
 | Column             | Type                | Options                 |
 |--------------------|---------------------|-------------------------|
-| user_id            | references          | foreign_key: true       |
-| item_id            | references          | foreign_key: true       |
+| user               | references          | foreign_key: true       |
+| item               | references          | foreign_key: true       |
 | post_code          | string              | null: false             |
 | address            | string              | null: false             |
 | prefecture         | string              | null: false             |
 | city               | string              | null: false             |
 | building_name      | string              |                         |
-| phone_number       | string              |                         |
+| phone_number       | string              | null: false             |
 
 
 ### Association
