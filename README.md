@@ -47,11 +47,14 @@ Things you may want to cover:
 | Column             | Type                | Options                 |
 |--------------------|---------------------|-------------------------|
 | user               | references          | foreign_key: true       |
-| category           | string              | null: false             |
-| price              | integer             | null: false             |
-| condition          | string              | null: false             |
+| category_id        | integer             | null: false             |
+| price_id           | integer             | null: false             |
+| condition_id       | integer             | null: false             |
 | days_id            | integer             | null: false             |
 | prefecture_id      | integer             | null: false             |
+| title_id           | integer             | null: false             |
+| description_id     | integer             | null: false             |
+| fare_id            | integer             | null: false             |
 
 
 ### Association
@@ -78,10 +81,9 @@ Things you may want to cover:
 
 | Column             | Type                | Options                 |
 |--------------------|---------------------|-------------------------|
-| user               | references          | foreign_key: true       |
-| item               | references          | foreign_key: true       |
-| post_code_id       | string              | null: false             |
-| address_id         | string              | null: false             |
+| order_history      | references          | foreign_key: true       |
+| post_code          | string              | null: false             |
+| address            | string              | null: false             |
 | prefecture_id      | string              | null: false             |
 | city               | string              | null: false             |
 | building_name      | string              |                         |
