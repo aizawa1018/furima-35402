@@ -39,8 +39,7 @@ Things you may want to cover:
 ### Association
 
 * has_many :items
-* has_many :buyers
-* has_many  :order_history
+* has_many  :order_historys
 
 
 ## items
@@ -49,7 +48,7 @@ Things you may want to cover:
 |--------------------|---------------------|-------------------------|
 | user               | references          | foreign_key: true       |
 | category           | string              | null: false             |
-| price              | float               | null: false             |
+| price              | integer             | null: false             |
 | condition          | string              | null: false             |
 | days_id            | integer             | null: false             |
 | prefecture_id      | integer             | null: false             |
@@ -58,7 +57,6 @@ Things you may want to cover:
 ### Association
 
 * belongs_to :user
-* has_many   :buyers
 * belongs_to :order_history
 
 
@@ -73,7 +71,7 @@ Things you may want to cover:
 
 * belongs_to :user
 * belongs_to :item
-* belongs_to :buyer
+* has_one    :buyer
 
 
 ## buyers
@@ -82,13 +80,13 @@ Things you may want to cover:
 |--------------------|---------------------|-------------------------|
 | user               | references          | foreign_key: true       |
 | item               | references          | foreign_key: true       |
-| post_code          | string              | null: false             |
-| address            | string              | null: false             |
-| prefecture         | string              | null: false             |
+| post_code_id       | string              | null: false             |
+| address_id         | string              | null: false             |
+| prefecture_id      | string              | null: false             |
 | city               | string              | null: false             |
 | building_name      | string              |                         |
 | phone_number       | string              | null: false             |
 
 
 ### Association
-
+belongs_to :order_history
