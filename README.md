@@ -48,11 +48,11 @@ Things you may want to cover:
 | Column             | Type                | Options                 |
 |--------------------|---------------------|-------------------------|
 | user               | references          | foreign_key: true       |
-| title              | string              | null: false             |
-| prise              | string              | null: false             |
-| description        | text                | null: false             |
-| days               | date                | null: false             |
-| prefecture         | string              | null: false             |
+| category           | string              | null: false             |
+| price              | float               | null: false             |
+| condition          | string              | null: false             |
+| days_id            | integer             | null: false             |
+| prefecture_id      | integer             | null: false             |
 
 
 ### Association
@@ -92,5 +92,3 @@ Things you may want to cover:
 
 ### Association
 
-* belongs_to :user
-* has_many :item
