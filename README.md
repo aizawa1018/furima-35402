@@ -48,19 +48,19 @@ Things you may want to cover:
 |--------------------|---------------------|-------------------------|
 | user               | references          | foreign_key: true       |
 | category_id        | integer             | null: false             |
-| price_id           | integer             | null: false             |
+| fare_id            | integer             | null: false             |
 | condition_id       | integer             | null: false             |
 | days_id            | integer             | null: false             |
 | prefecture_id      | integer             | null: false             |
-| title_id           | integer             | null: false             |
-| description_id     | integer             | null: false             |
-| fare_id            | integer             | null: false             |
+| title              | string              | null: false             |
+| description        | string              | null: false             |
+| price              | integer             | null: false             |
 
 
 ### Association
 
 * belongs_to :user
-* belongs_to :order_history
+* has_one    :order_history
 
 
 ## order_historys
@@ -84,7 +84,7 @@ Things you may want to cover:
 | order_history      | references          | foreign_key: true       |
 | post_code          | string              | null: false             |
 | address            | string              | null: false             |
-| prefecture_id      | string              | null: false             |
+| prefecture_id      | integer             | null: false             |
 | city               | string              | null: false             |
 | building_name      | string              |                         |
 | phone_number       | string              | null: false             |
