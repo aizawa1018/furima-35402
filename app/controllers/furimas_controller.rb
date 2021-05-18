@@ -4,4 +4,6 @@ class FurimasController < ApplicationController
 
   def new
   end
+
+  
 end
