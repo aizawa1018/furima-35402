@@ -102,6 +102,16 @@ RSpec.describe User, type: :model do
       @user.valid?
       expect(@user.errors.full_messages).to include("Last name 全角文字を使用してください")
     end
+    it "first_nameが空欄の場合、登録できないこと"  do
+      user = FactoryBot.build(:user, first_name: "" )  
+      user.valid?
+      expect(user.errors[:first_name]).to include("can't be blank")
+    end
+    it "last_nameが空欄の場合、登録できないこと"  do
+      user = FactoryBot.build(:user, last_name: "" )  
+      user.valid?
+      expect(user.errors[:last_name]).to include("can't be blank")
+    end
    end
   end
  end
