@@ -47,7 +47,51 @@ RSpec.describe User, type: :model do
       @user.valid?
       expect(@user.errors.full_messages).to include('Password is too short (minimum is 6 characters)')
     end
-    
+    it "emailに「＠」がない場合、登録できないこと" do
+      user = FactoryBot.build(:user, email: "test.gmail.com")
+      user.valid?
+      expect(user.errors[:email]).to include("is invalid")
+    end   
+    it "first_name_kanaが空欄の場合、登録できないこと"  do
+      user = FactoryBot.build(:user, first_name_kana: "" )  
+      user.valid?
+      expect(user.errors[:first_name_kana]).to include("can't be blank")
+    end
+    it "last_name_kanaが空欄の場合、登録できないこと"  do
+      user = FactoryBot.build(:user, last_name_kana: "" )  
+      user.valid?
+      expect(user.errors[:last_name_kana]).to include("can't be blank")
+    end
+    it "birthdayが空欄の場合、登録できないこと"  do
+      user = FactoryBot.build(:user, birthday: "" )  
+      user.valid?
+      expect(user.errors[:birthday]).to include("can't be blank")
+    end
+    it 'first_name_kanaが全角カタカナでなければ登録できないこと' do
+      @user =FactoryBot.build(:user, first_name_kana: "あいうえお")
+      @user.valid?
+      expect(@user.errors[:first_name_kana]).to include("is invalid. Input full-width katakana characters.")
+    end
+    it 'last_name_kanaが全角カタカナでなければ登録できないこと' do
+      @user = FactoryBot.build(:user, last_name_kana: "あいうえお")
+      @user.valid?
+      expect(@user.errors[:last_name_kana]).to include("is invalid. Input full-width katakana characters.")
+    end
+    it "passwordが数字のみの場合は登録できないこと" do
+      @user = FactoryBot.build(:user, password: "123456", password_confirmation: "123456")
+      @user.valid?
+      expect(@user.errors[:password]).to include("には英字と数字の両方を含めて設定してください")
+    end
+    it "passwordが英文字のみの場合は登録できないこと" do
+      @user = FactoryBot.build(:user, password: "abcdefg", password_confirmation: "abcdefg")
+      @user.valid?
+      expect(@user.errors[:password]).to include("には英字と数字の両方を含めて設定してください")
+    end
+    it "passwordが全角のみの場合は登録できないこと" do
+      @user = FactoryBot.build(:user, password: "あいうえお", password_confirmation: "abcdefg")
+      @user.valid?
+      expect(@user.errors[:password]).to include("には英字と数字の両方を含めて設定してください")
+    end
    end
   end
  end
