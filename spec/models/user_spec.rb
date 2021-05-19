@@ -92,6 +92,16 @@ RSpec.describe User, type: :model do
       @user.valid?
       expect(@user.errors[:password]).to include("には英字と数字の両方を含めて設定してください")
     end
+    it "名字は全角（漢字・ひらがな・カタカナ）でなければ登録できない" do
+      @user.first_name = "kana"
+      @user.valid?
+      expect(@user.errors.full_messages).to include("First name 全角文字を使用してください")
+    end
+    it "名前は全角（漢字・ひらがな・カタカナ）でなければ登録できない" do
+      @user.last_name = "kana"
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Last name 全角文字を使用してください")
+    end
    end
   end
  end
