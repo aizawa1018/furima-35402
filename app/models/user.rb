@@ -9,9 +9,6 @@ class User < ApplicationRecord
          validates :first_name     
          validates :last_name       
          validates :birthday
-
-         
-
          end
 
         PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
