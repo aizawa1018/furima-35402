@@ -9,13 +9,11 @@ class User < ApplicationRecord
          validates :first_name     
          validates :last_name       
          validates :birthday
-         validates :first_name_kana, format: {with: /\A[ァ-ヶー]+\z/, message: "is invalid. Input full-width katakana characters."}
-         validates :last_name_kana, format: {with: /\A[ァ-ヶー]+\z/, message: "is invalid. Input full-width katakana characters."}
          end
 
-         
         
-
+        
+      
 
         PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
          validates_format_of :password, with: PASSWORD_REGEX, message: 'には英字と数字の両方を含めて設定してください'
@@ -23,6 +21,11 @@ class User < ApplicationRecord
          with_options presence: true, format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/, message: '全角文字を使用してください' } do
           validates :first_name
           validates :last_name
-         
         end
+        with_options presence: true, format: {with: /\A[ァ-ヶー]+\z/, message: "is invalid. Input full-width katakana characters."}do
+         validates :first_name_kana
+         validates :last_name_kana
+      end
+
+        
 end
