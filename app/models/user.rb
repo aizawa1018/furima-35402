@@ -9,6 +9,8 @@ class User < ApplicationRecord
          validates :first_name     
          validates :last_name       
          validates :birthday
+
+         has_many :items
          end
 
         

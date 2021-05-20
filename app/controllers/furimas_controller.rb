@@ -4,6 +4,7 @@ class FurimasController < ApplicationController
 
   def new
   end
+private
 
   
 end
