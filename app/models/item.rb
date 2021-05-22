@@ -2,7 +2,6 @@ class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   validates :pride, presence: true, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 }
 
-
   belongs_to :category
   belongs_to :charge
   belongs_to :condition
@@ -11,6 +10,7 @@ class Item < ApplicationRecord
   has_one_attached :image
 
   
+
 
   with_options presence: true do
   validates :category_id

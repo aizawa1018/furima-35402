@@ -1,13 +1,13 @@
 FactoryBot.define do
   factory :item do
-    category_id,
-    fare_id,
-    condition_id,
-    days_id,
-    prefecture_id,
-    title,
-    description,
-    pride,
-    
+    image             {Faker::Lorem.sentence}
+    category_id      {1}
+    fare_id          {1}
+    condition_id     {1}
+    days_id          {1}
+    prefecture_id    {1}
+    title            {Faker::Lorem.sentence}
+    description      {Faker::Lorem.sentence}
+    pride            {"9999999"}
   end
 end

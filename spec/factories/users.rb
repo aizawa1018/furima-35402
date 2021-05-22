@@ -9,5 +9,5 @@ FactoryBot.define do
     first_name_kana       {'テスト'}
     last_name_kana        {'テスト'}
     birthday              { Faker::Date.backward }
-  
+  end
 end
