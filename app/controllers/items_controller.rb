@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:index]
   def index
     @items = Item.all
   end
@@ -9,7 +9,7 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @items = Item.new(furima_params)
+    @items = Item.new(item_params)
     if @items.save
       redirect_to root_path
     else
@@ -22,7 +22,7 @@ class ItemsController < ApplicationController
   end
 
 private
-def hurima_params
-  params.require(:hurima).permit(:user, :category_id, :fare_id, :condition_id,:days_id, :prefecture_id, :title, :description,:price)
+def item_params
+  params.require(:item).permit(:user, :category_id, :fare_id, :condition_id,:days_id, :prefecture_id, :title, :description,:pride)
 end
 end

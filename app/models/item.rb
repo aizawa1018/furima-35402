@@ -15,6 +15,8 @@ class Item < ApplicationRecord
   validates :prefecture_id
   validates :title
   validates :description
-  validates :price
+  validates :pride
+
+  
   end
 end
