@@ -58,6 +58,14 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Description can't be blank")
       end
+
+      context '登録ができる時' do
+       it '全ての値が正しく入力されていれば出品できること' do
+         expect(@item).to be_valid
+       end
+      end
+
+      
       
     end
   end
