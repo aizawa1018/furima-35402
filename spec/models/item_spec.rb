@@ -6,6 +6,7 @@ RSpec.describe Item, type: :model do
   end
 
   describe '商品出品入力' do
+    context '登録ができない時' do
 
     it 'categoryが未選択だと出品できない' do
       @item.category_id = 0
@@ -67,7 +68,7 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Title 全角文字を使用してください")
       end
-      
+    end
   end
 end
 

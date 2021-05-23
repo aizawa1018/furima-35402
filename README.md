@@ -95,17 +95,7 @@ belongs_to :order_history
 
 
 
-  validate :images_presence
-
-def images_presence
-    if images.attached?
-      if images.length > 1
-        errors.add(:image, '1枚まで投稿できます')
-      end
-    else
-      errors.add(:image, '画像がありません')
-    end
-  end
+  
 
 
 

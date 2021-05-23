@@ -5,11 +5,17 @@ class Item < ApplicationRecord
   belongs_to :category
   belongs_to :charge
   belongs_to :condition
-  belongs_to :day
+  belongs_to :days
   belongs_to :Prefecture
   has_one_attached :image
+  belongs_to :user
 
-  
+  validates :category_id, numericality: { other_than: 1 } 
+  validates :charge_id, numericality: { other_than: 1 } 
+  validates :condition_id, numericality: { other_than: 1 } 
+  validates :days_id, numericality: { other_than: 1 } 
+  validates :prefecture_id, numericality: { other_than: 1 } 
+
 
 
   with_options presence: true do

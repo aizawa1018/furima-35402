@@ -8,6 +8,6 @@ FactoryBot.define do
     prefecture_id    {1}
     title            {Faker::Lorem.sentence}
     description      {Faker::Lorem.sentence}
-    pride            {"9999999"}
+    pride            {9999999}
   end
 end
