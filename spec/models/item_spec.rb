@@ -16,7 +16,7 @@ RSpec.describe Item, type: :model do
       it 'imageが空だと出品できない' do
         @item.image = nil
         @item.valid?
-        expect(@item.errors.full_messages).to include()
+        expect(@item.errors.full_messages).to include("User must exist")
       end
       it 'conditionが未選択だと出品できない' do
         @item.condition_id = 0
@@ -58,9 +58,30 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Description can't be blank")
       end
+      it 'priceが設定範囲以外だと出品できない' do
+        @item.pride = 100000000
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Pride must be less than or equal to 9999999")
+      end
+      it '半角英数字混合では登録できないこと' do
+        @item.pride = "abc123"
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Pride is not a number")
+      end
+      it '半角英字では登録できないこと' do
+        @item.pride = "abc"
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Pride is not a number")
+      end
+      it 'priceが300円以下だと出品できない' do
+        @item.pride = 299
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Pride must be greater than or equal to 300')
+      end
 
       context '登録ができる時' do
        it '全ての値が正しく入力されていれば出品できること' do
+        @item = FactoryBot.create(:user)
          expect(@item).to be_valid
        end
       end

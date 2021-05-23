@@ -6,9 +6,9 @@ class Item < ApplicationRecord
   belongs_to :charge
   belongs_to :condition
   belongs_to :day
-  belongs_to :Prefecture
+  belongs_to :prefecture
   has_one_attached :image
-  belongs_to :user,optional: true
+  belongs_to :user
 
   with_options  numericality: { other_than: 0 } do
   validates :category_id
