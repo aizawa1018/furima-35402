@@ -7,8 +7,9 @@ class Item < ApplicationRecord
   belongs_to :condition
   belongs_to :day
   belongs_to :prefecture
-  has_one_attached :image
   belongs_to :user
+  has_one_attached :image
+
 
   with_options  numericality: { other_than: 0 } do
   validates :category_id
@@ -28,6 +29,8 @@ class Item < ApplicationRecord
   validates :title
   validates :description
   validates :pride
+
+
   end
 
   
