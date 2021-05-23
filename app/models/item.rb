@@ -5,17 +5,18 @@ class Item < ApplicationRecord
   belongs_to :category
   belongs_to :charge
   belongs_to :condition
-  belongs_to :days
+  belongs_to :day
   belongs_to :Prefecture
   has_one_attached :image
-  belongs_to :user
+  belongs_to :user,optional: true
 
-  validates :category_id, numericality: { other_than: 1 } 
-  validates :charge_id, numericality: { other_than: 1 } 
-  validates :condition_id, numericality: { other_than: 1 } 
-  validates :days_id, numericality: { other_than: 1 } 
-  validates :prefecture_id, numericality: { other_than: 1 } 
-
+  with_options  numericality: { other_than: 0 } do
+  validates :category_id
+  validates :fare_id
+  validates :condition_id
+  validates :days_id
+  validates :prefecture_id
+  end
 
 
   with_options presence: true do
@@ -29,8 +30,5 @@ class Item < ApplicationRecord
   validates :pride
   end
 
-  with_options presence: true, format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/, message: '全角文字を使用してください' } do
-    validates :title
-    validates :description
-  end
+  
 end
