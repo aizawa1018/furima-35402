@@ -29,6 +29,7 @@ class Item < ApplicationRecord
   validates :title
   validates :description
   validates :pride
+  validates :image
 
 
   end

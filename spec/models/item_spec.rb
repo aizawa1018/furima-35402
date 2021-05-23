@@ -16,7 +16,7 @@ RSpec.describe Item, type: :model do
       it 'imageが空だと出品できない' do
         @item.image = nil
         @item.valid?
-        expect(@item.errors.full_messages).to include("User must exist")
+        expect(@item.errors.full_messages).to include("Image can't be blank")
       end
       it 'conditionが未選択だと出品できない' do
         @item.condition_id = 0
