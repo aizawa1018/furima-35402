@@ -98,4 +98,7 @@ belongs_to :order_history
   
 
 
-
+<% if user_signed_in? && @item.purchase==nil %>
+    <% if current_user.id == @item.user_id %>
+     <% end %>
+   <% end %>
