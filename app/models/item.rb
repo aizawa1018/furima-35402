@@ -8,6 +8,7 @@ class Item < ApplicationRecord
   belongs_to :day
   belongs_to :prefecture
   belongs_to :user
+  belongs_to :fare
   has_one_attached :image
 
 
