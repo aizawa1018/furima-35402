@@ -3,11 +3,11 @@ class Item < ApplicationRecord
   validates :pride, presence: true, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 }
 
   belongs_to :category
-  belongs_to :charge
   belongs_to :condition
   belongs_to :day
   belongs_to :prefecture
   belongs_to :user
+  belongs_to :fare
   has_one_attached :image
 
 
