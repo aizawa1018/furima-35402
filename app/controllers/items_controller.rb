@@ -38,6 +38,6 @@ def item_params
   params.require(:item).permit(:user, :category_id, :fare_id, :condition_id,:days_id, :prefecture_id, :title, :description,:pride, :image).merge(user_id: current_user.id)
 end
 #def set_item
- # @item = Item.find(params[:id])
+  #@item = Item.find(params[:id])
 #end
 end
