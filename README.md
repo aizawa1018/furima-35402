@@ -97,5 +97,10 @@ belongs_to :order_history
 
   
 
-    <%= link_to "商品の編集", edit_item_path(@item.id), method: :get, class:"item-red-btn" %>
-    <%= link_to "削除", item_path(@item.id), method: :delete, class:"item-destroy" %>
+  def destroy
+    if current_user.id == @item.user_id
+      @item.destroy
+     end
+      redirect_to root_path
+  end  
+    
