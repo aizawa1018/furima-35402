@@ -9,6 +9,9 @@ class Item < ApplicationRecord
   belongs_to :user
   belongs_to :fare
   has_one_attached :image
+  has_one    :order_history
+
+
 
 
   with_options  numericality: { other_than: 0 } do
@@ -19,20 +22,16 @@ class Item < ApplicationRecord
   validates :prefecture_id
   end
 
-
   with_options presence: true do
-  validates :category_id
-  validates :fare_id
-  validates :condition_id
-  validates :days_id
-  validates :prefecture_id
-  validates :title
-  validates :description
-  validates :pride
-  validates :image
-
-
+    validates :category_id
+    validates :fare_id
+    validates :condition_id
+    validates :days_id
+    validates :prefecture_id
+    validates :title
+    validates :description
+    validates :pride
+    validates :image  
   end
 
-  
 end

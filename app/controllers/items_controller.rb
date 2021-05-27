@@ -31,8 +31,6 @@ class ItemsController < ApplicationController
     end
   end
 
-
-
   def show
   end
 
@@ -41,8 +39,6 @@ class ItemsController < ApplicationController
       redirect_to root_path
     end
   end
-
-  
 
 private
 def item_params
