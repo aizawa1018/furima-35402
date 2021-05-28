@@ -1,8 +1,12 @@
 class BuyersController < ApplicationController
+  before_action :authenticate_user!, only: [:index, :create]
   before_action :set_buyers, only:[:index, :create]
 
   def index
      @buyer_order = BuyerOrder.new
+     if current_user.id == @item.user_id || @item.order_history.present?
+      redirect_to root_path
+     end
   end
 
   def create
@@ -13,6 +17,10 @@ class BuyersController < ApplicationController
        redirect_to root_path
     else
       render :index
+    end
+
+    if current_user == @item.user_id || @item.order_history.present?
+       root_path
     end
   end
 
