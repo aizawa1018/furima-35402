@@ -3,6 +3,9 @@ require 'rails_helper'
 RSpec.describe BuyerOrder, type: :model do
   before do
     @buyer_order = FactoryBot.build(:buyer_order)
+    user = FactoryBot.create(:user)
+    item =FactoryBot.create(:item)
+    sleep(1)
   end
 
   context '内容に問題ない場合' do
@@ -50,6 +53,11 @@ RSpec.describe BuyerOrder, type: :model do
       @buyer_order.address  = ""
       @buyer_order.valid?
       expect(@buyer_order.errors.full_messages).to include("Address can't be blank")
+    end
+    it "rokenがないと保存できないこと" do
+      @buyer_order.token  = ""
+      @buyer_order.valid?
+      expect(@buyer_order.errors.full_messages).to include("Token can't be blank", "User can't be blank")
     end
 
   end

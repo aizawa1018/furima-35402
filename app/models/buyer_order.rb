@@ -8,6 +8,8 @@ class BuyerOrder
    validates :city             ,format: { with: /\A[ぁ-んァ-ン一-龥]/, message: "is invalid. Input full-width characters."}
    validates :phone_number     ,format: {with: /\A\d{10}\z|\A\d{11}\z/ , message: "is invalid."}
    validates :token
+   validates :user_id
+   validates :item_id
   end
   validates :prefecture_id    ,numericality: { other_than: 0, message: "can't be blank" } 
 
