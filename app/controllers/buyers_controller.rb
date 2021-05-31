@@ -1,12 +1,10 @@
 class BuyersController < ApplicationController
   before_action :authenticate_user!, only: [:index, :create]
   before_action :set_buyers, only:[:index, :create]
+  before_action :set_user, only:[:index, :create]
 
   def index
      @buyer_order = BuyerOrder.new
-     if current_user.id == @item.user_id || @item.order_history.present?
-      redirect_to root_path
-     end
   end
 
   def create
@@ -17,10 +15,6 @@ class BuyersController < ApplicationController
        redirect_to root_path
     else
       render :index
-    end
-
-    if current_user == @item.user_id || @item.order_history.present?
-       root_path
     end
   end
 
@@ -33,8 +27,14 @@ class BuyersController < ApplicationController
     @item = Item.find(params[:item_id])
   end
 
+  def set_user
+    if current_user.id == @item.user_id || @item.order_history.present?
+      redirect_to root_path
+     end
+  end
+
   def pay_item
-    Payjp.api_key = "sk_test_fdda5bbc68aa71f7f5d473b0"  # 自身のPAY.JPテスト秘密鍵を記述しましょう
+    Payjp.api_key = ENV["PAYJP_SECRET_KEY"] # 自身のPAY.JPテスト秘密鍵を記述しましょう
     Payjp::Charge.create(
       amount: @item.pride,  # 商品の値段
       card: buyer_params[:token],    # カードトークン
