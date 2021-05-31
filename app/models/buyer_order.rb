@@ -17,9 +17,7 @@ class BuyerOrder
   def save
     buyer_order = OrderHistory.create(user_id: user_id, item_id: item_id)
                   Buyer.create(order_history: order_history, post_code: post_code, address: address,building_name: building_name, prefecture_id: prefecture_id, city: city, phone_number: phone_number)
-  
     end
-
 end
 
 

@@ -7,5 +7,7 @@ FactoryBot.define do
     building_name{'東京ビル'}
     address {1-1-1}
     token {'決済'}
+    user_id{1}
+    item_id{1}
   end
 end

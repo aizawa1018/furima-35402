@@ -3,9 +3,9 @@ require 'rails_helper'
 RSpec.describe BuyerOrder, type: :model do
   before do
     @buyer_order = FactoryBot.build(:buyer_order)
-    user = FactoryBot.create(:user)
-    item =FactoryBot.create(:item)
-    sleep(1)
+    @user = FactoryBot.create(:user)
+    @item =FactoryBot.create(:item)
+    sleep(0.5)
   end
 
   context '内容に問題ない場合' do
@@ -34,17 +34,23 @@ RSpec.describe BuyerOrder, type: :model do
       @buyer_order.valid?
       expect(@buyer_order.errors.full_messages).to include("Prefecture can't be blank")
     end
-    it "phone_numberを選択していないと保存できないこと" do
+    it "phone_numberが空では保存できないこと" do
       @buyer_order.phone_number = 0
       @buyer_order.valid?
       expect(@buyer_order.errors.full_messages).to include("Phone number is invalid.")
     end
-    it "post_codeにhyphen(-)がないとしていないと保存できないこと" do
-      @buyer_order.post_code = 0
+    it "phone_numberが12桁以上では保存できないこと" do
+      @buyer_order.phone_number = '1234567891111'
       @buyer_order.valid?
-      expect(@buyer_order.errors.full_messages).to include("Post code is invalid. Include hyphen(-)")
+      expect(@buyer_order.errors.full_messages).to include("Phone number is invalid.")
     end
-    it "cityを選択していないと保存できないこと" do
+    it "phone_numberが英数混合では保存できないこと" do
+      @buyer_order.phone_number = 'abc123456789'
+      @buyer_order.valid?
+      expect(@buyer_order.errors.full_messages).to include("Phone number is invalid.")
+    end
+
+    it "cityが空では保存できないこと" do
       @buyer_order.city = 0
       @buyer_order.valid?
       expect(@buyer_order.errors.full_messages).to include("City is invalid. Input full-width characters.")
@@ -57,7 +63,17 @@ RSpec.describe BuyerOrder, type: :model do
     it "rokenがないと保存できないこと" do
       @buyer_order.token  = ""
       @buyer_order.valid?
-      expect(@buyer_order.errors.full_messages).to include("Token can't be blank", "User can't be blank")
+      expect(@buyer_order.errors.full_messages).to include("Token can't be blank")
+    end
+    it 'user_idが未選択だと出品できない' do
+      @buyer_order.user_id = nil
+      @buyer_order.valid?
+      expect(@buyer_order.errors.full_messages).to include("User can't be blank")
+    end
+    it 'item_idが未選択だと出品できない' do
+      @buyer_order.item_id = nil
+      @buyer_order.valid?
+      expect(@buyer_order.errors.full_messages).to include("Item can't be blank")
     end
 
   end
