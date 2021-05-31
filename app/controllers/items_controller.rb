@@ -56,7 +56,7 @@ def contributor_confirmation
 end
 
 def edit_up
-  if current_user.id == @item.user.id && @item.order_historys.present?
+  if @item.order_historys.present?
   redirect_to root_path
   end
 end

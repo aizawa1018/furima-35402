@@ -35,7 +35,7 @@ RSpec.describe BuyerOrder, type: :model do
       expect(@buyer_order.errors.full_messages).to include("Prefecture can't be blank")
     end
     it "phone_numberが空では保存できないこと" do
-      @buyer_order.phone_number = 0
+      @buyer_order.phone_number = ''
       @buyer_order.valid?
       expect(@buyer_order.errors.full_messages).to include("Phone number is invalid.")
     end
@@ -49,9 +49,8 @@ RSpec.describe BuyerOrder, type: :model do
       @buyer_order.valid?
       expect(@buyer_order.errors.full_messages).to include("Phone number is invalid.")
     end
-
     it "cityが空では保存できないこと" do
-      @buyer_order.city = 0
+      @buyer_order.city = ''
       @buyer_order.valid?
       expect(@buyer_order.errors.full_messages).to include("City is invalid. Input full-width characters.")
     end
@@ -60,7 +59,7 @@ RSpec.describe BuyerOrder, type: :model do
       @buyer_order.valid?
       expect(@buyer_order.errors.full_messages).to include("Address can't be blank")
     end
-    it "rokenがないと保存できないこと" do
+    it "tokenがないと保存できないこと" do
       @buyer_order.token  = ""
       @buyer_order.valid?
       expect(@buyer_order.errors.full_messages).to include("Token can't be blank")
