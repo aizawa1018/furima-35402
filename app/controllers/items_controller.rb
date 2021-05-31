@@ -2,6 +2,7 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_item, only: [:show,:edit,:update,:destroy]
   before_action :contributor_confirmation, only: [:edit, :update,:destroy]
+  before_action :edit_up, only: [:edit, :update, :destroy]
 
   def index
     @items = Item.all.order("created_at DESC")
@@ -31,8 +32,6 @@ class ItemsController < ApplicationController
     end
   end
 
-
-
   def show
   end
 
@@ -41,8 +40,6 @@ class ItemsController < ApplicationController
       redirect_to root_path
     end
   end
-
-  
 
 private
 def item_params
@@ -55,7 +52,13 @@ def set_item
 end
 
 def contributor_confirmation
-  redirect_to root_path unless current_user == @prototype.user
+  redirect_to root_path unless current_user == @item.user
+end
+
+def edit_up
+  if @item.order_historys.present?
+  redirect_to root_path
+  end
 end
 
 end
